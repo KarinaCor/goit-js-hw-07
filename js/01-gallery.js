@@ -4,26 +4,23 @@ console.log(galleryItems)
 // Change code below this line
 
 const gallery = document.querySelector('.gallery')
-const items = []
 
-galleryItems.forEach(element => {
-	const galleryItem = document.createElement('div')
-	galleryItem.className = 'gallery__item'
-	const galleryLink = document.createElement('a')
-	galleryLink.className = 'gallery__link'
-	galleryLink.href = element.original
-	const galleryImage = document.createElement('img')
-    galleryImage.className = 'gallery__image'
-    galleryImage.src = element.preview;
-    galleryImage.setAttribute('data-source', element.original)
-    galleryImage.alt = element.description;
 
-	galleryItem.append(galleryLink)
-	galleryLink.append(galleryImage)
-	items.push(galleryItem)
-})
+const markup = galleryItems.map(({preview, original, description}) =>
+    `<li class="gallery__item">
+  <a class="gallery__link" href="${original}">
+    <img
+      class="gallery__image"
+      src="${preview}"
+      data-source="${original}"
+      alt="${description}"
+    />
+  </a>
+</li>`);
 
-gallery.append(...items)
+
+gallery.insertAdjacentHTML("beforeend", markup.join(""));
+
 
 gallery.addEventListener('click', e => {
     e.preventDefault();
@@ -45,4 +42,7 @@ gallery.addEventListener('click', e => {
 		}
 	})
 })
+
+
+
 
