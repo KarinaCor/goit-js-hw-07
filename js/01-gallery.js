@@ -36,13 +36,16 @@ gallery.addEventListener('click', e => {
 
     instance.show()
     
-    gallery.addEventListener('keydown', e => {
-		if (e.key === 'Escape') {
-			instance.close()
-      gallery.removeEventListener('keydown', e)
-		}
-	})
+    gallery.addEventListener('keydown', onESCClick) 
+
+    function onESCClick(e) {
+      if(e.key === "Escape") {
+        instance.close()
+      }
+    }
 })
+
+
 
 
 
