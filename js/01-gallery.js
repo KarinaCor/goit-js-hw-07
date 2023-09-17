@@ -41,6 +41,7 @@ gallery.addEventListener('click', e => {
     function onESCClick(e) {
       if(e.key === "Escape") {
         instance.close()
+        galerry.removeEventListener('keydown', onESCClick)
       }
     }
 })
